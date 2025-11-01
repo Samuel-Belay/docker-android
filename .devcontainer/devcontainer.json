@@ -1,11 +1,20 @@
 {
-    "name": "Android Emulator",
+    "name": "Android Codespace",
     "build": {
         "dockerfile": "Dockerfile"
     },
+    "remoteUser": "vscode",
     "mounts": [
-        "source=android-data,target=/home/vscode/.android,type=volume",
-        "source=emulator-avd,target=/home/vscode/.android/avd,type=volume"
+        "source=android-sdk,target=/opt/android-sdk",
+        "source=android-avd,target=/home/vscode/.android/avd"
     ],
-    "remoteUser": "vscode"
+    "postCreateCommand": "/usr/local/bin/start-android.sh",
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "msjsdiag.debugger-for-chrome",
+                "vscjava.vscode-java-pack"
+            ]
+        }
+    }
 }
