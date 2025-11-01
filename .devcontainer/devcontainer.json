@@ -1,0 +1,11 @@
+{
+    "name": "Android Emulator",
+    "build": {
+        "dockerfile": "Dockerfile"
+    },
+    "mounts": [
+        "source=android-data,target=/home/vscode/.android,type=volume",
+        "source=emulator-avd,target=/home/vscode/.android/avd,type=volume"
+    ],
+    "remoteUser": "vscode"
+}
