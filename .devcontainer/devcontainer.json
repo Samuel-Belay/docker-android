@@ -1,20 +1,31 @@
 {
-    "name": "Android Codespace",
+    "name": "Android Emulator Codespace",
     "build": {
-        "dockerfile": "Dockerfile"
+        "dockerfile": "Dockerfile",
+        "context": ".",
+        "args": {
+            "USERNAME": "vscode"
+        }
     },
-    "remoteUser": "vscode",
-    "mounts": [
-        "source=android-sdk,target=/opt/android-sdk",
-        "source=android-avd,target=/home/vscode/.android/avd"
-    ],
-    "postCreateCommand": "/usr/local/bin/start-android.sh",
     "customizations": {
         "vscode": {
             "extensions": [
-                "msjsdiag.debugger-for-chrome",
-                "vscjava.vscode-java-pack"
+                "ms-vscode.cpptools",
+                "vscjava.vscode-java-pack",
+                "ms-python.python"
             ]
         }
-    }
+    },
+    "workspaceFolder": "/home/vscode",
+    "mounts": [
+        "source=${localWorkspaceFolder},target=/home/vscode/workspace,type=bind"
+    ],
+    "forwardPorts": [
+        5900
+    ],
+    "remoteUser": "vscode",
+    "postCreateCommand": "echo 'Codespace ready! Use VNC on port 5900 to access Android Emulator.'",
+    "runArgs": [
+        "--shm-size=2g"
+    ]
 }
